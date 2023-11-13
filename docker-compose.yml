@@ -33,6 +33,9 @@ services:
             dockerfile: development/php-fpm/Dockerfile
         volumes:
             - ./api:/app
+        environment:
+            APP_DEBUG: 1
+            APP_ENV: dev
 
     api-php-cli:
         build:

@@ -2,17 +2,22 @@
 
 declare(strict_types=1);
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+use DI\Container;
+use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
+
+http_response_code(500);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = AppFactory::create();
+/**
+ * @var ContainerInterface $container
+ */
+$container = require __DIR__ . '/../config/container.php';
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write('{}');
-    return $response->withHeader('Content-Type', 'application/json');
-});
+$app = AppFactory::createFromContainer($container);
+
+(require __DIR__ . '/../config/middleware.php')($app, $container);
+(require __DIR__ . '/../config/routes.php')($app);
 
 $app->run();
