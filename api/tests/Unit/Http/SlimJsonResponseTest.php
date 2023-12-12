@@ -6,6 +6,11 @@ use App\Http\SlimJsonResponse;
 use JsonException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \App\Http\SlimJsonResponse
+ *
+ * @internal
+ */
 class SlimJsonResponseTest extends TestCase
 {
     /**

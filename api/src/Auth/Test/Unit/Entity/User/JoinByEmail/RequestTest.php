@@ -11,6 +11,12 @@ use App\Auth\Entity\User\User;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
+
+/**
+ * @covers \App\Auth\Entity\User\User
+ *
+ * @internal
+ */
 class RequestTest extends TestCase
 {
     public function testSuccess(): void
