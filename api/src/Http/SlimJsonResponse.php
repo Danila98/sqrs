@@ -12,6 +12,8 @@ use Slim\Psr7\Response;
 class SlimJsonResponse extends Response
 {
     /**
+     * @param mixed $data
+     * @param int $status
      * @throws \JsonException
      */
     public function __construct($data, int $status = 200)

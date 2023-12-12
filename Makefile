@@ -2,7 +2,9 @@ init: docker-down-clear docker-pull docker-build docker-up
 up: docker-up
 down: docker-down
 restart: down up
-
+lint: api-lint
+analyze: api-analyze
+test: api-test
 docker-up:
 	docker-compose up -d
 
@@ -64,3 +66,14 @@ rollback:
 	ssh ${HOST} -p ${PORT} 'cd site_${BUILD_NUMBER} && docker-compose up --build --remove-orphans -d'
 	ssh ${HOST} -p ${PORT} 'rm -f site'
 	ssh ${HOST} -p ${PORT} 'ln -sr site_${BUILD_NUMBER} site'
+api-lint:
+	docker compose run --rm api-php-cli composer lint
+	docker compose run --rm api-php-cli composer php-cs-fixer fix -- --dry-run --diff
+api-analyze:
+	docker compose run --rm api-php-cli composer psalm -- --no-diff
+
+api-analyze-diff:
+	docker compose run --rm api-php-cli composer psalm
+
+api-test:
+	docker compose run --rm api-php-cli composer test
