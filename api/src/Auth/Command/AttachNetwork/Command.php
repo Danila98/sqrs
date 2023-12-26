@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Auth\Command\JoinByNetwork;
+namespace App\Auth\Command\AttachNetwork;
 
 class Command
 {
-    public string $email = '';
+    public string $id = '';
     public string $network = '';
     public string $identity = '';
 }
