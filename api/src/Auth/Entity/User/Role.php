@@ -1,13 +1,15 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Auth\Entity\User;
 
 use Webmozart\Assert\Assert;
 
-class Role
+final class Role
 {
-    public const ADMIN = 'admin';
-
     public const USER = 'user';
+    public const ADMIN = 'admin';
 
     private string $name;
 

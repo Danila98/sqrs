@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http;
 
-use Fig\Http\Message\StatusCodeInterface;
-use Psr\Http\Message\StreamInterface;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Headers;
-use Slim\Psr7\Interfaces\HeadersInterface;
 use Slim\Psr7\Response;
 
 class SlimJsonResponse extends Response
@@ -14,7 +13,6 @@ class SlimJsonResponse extends Response
     /**
      * @param mixed $data
      * @param int $status
-     * @throws \JsonException
      */
     public function __construct($data, int $status = 200)
     {
